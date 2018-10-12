@@ -1,7 +1,7 @@
 package dbOp;
+import java.io.IOException;
 import java.sql.*;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class DBQuery {
     private Connection conn;
@@ -39,21 +39,28 @@ public class DBQuery {
         return tupleList;
     }
 
+    public void importDataToDB(String fileName, String tableName) {
+        try{
+            String sql = "LOAD DATA LOCAL INFILE '"  +fileName
+                        + "' INTO TABLE " + tableName
+                        + " FIELDS TERMINATED BY ','  LINES TERMINATED BY '\n';";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.executeQuery(sql);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            System.out.println("Open csv file failed!");
+        }
+    }
+
     public void outputTuple(LinkedList<LinkedList> tupleList){
-        /*for(LinkedList<String> tuple: tupleList){
+        for(LinkedList<String> tuple: tupleList){
             String tupleString="";
             for(String field: tuple){
                 tupleString += field + ",";
             }
             System.out.println(tupleString);
-        }*/
-
-        tupleList
-                .stream()
-                .collect(Collectors.toList())
-                .forEach(e->System.out.println(e.get(2)));
-
-
+        }
     }
 
 }
