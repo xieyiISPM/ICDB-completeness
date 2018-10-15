@@ -39,6 +39,10 @@ public class DBQuery {
         return tupleList;
     }
 
+    public LinkedList<LinkedList> getOrderedTuple(String sql) throws SQLException {
+        return queryDB(sql);
+    }
+
     public void importDataToDB(String fileName, String tableName) {
         try{
             String sql = "LOAD DATA LOCAL INFILE '"  +fileName
