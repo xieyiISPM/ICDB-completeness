@@ -1,14 +1,19 @@
-import rsa.RSA;
+import cryto.RSA;
 
 import java.math.BigInteger;
-import java.util.LinkedList;
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import com.google.common.base.Stopwatch;
+import java.util.concurrent.TimeUnit;
 
 public class TestRSA {
-    public static void main(String[] args){
+    public static void main(String[] args) throws NoSuchAlgorithmException {
 
-        LinkedList sigList = new LinkedList<byte[]>();
-        LinkedList messageList = new LinkedList<String>();
-        int num = 10;
+        TimeUnit TIME_UNIT = TimeUnit.MILLISECONDS;
+
+        ArrayList sigList = new ArrayList<byte[]>();
+        ArrayList messageList = new ArrayList<String>();
+        int num = 300000;
         for(int i= 0; i < num; i++){
             messageList.add(new String("message" + i));
         }
@@ -28,12 +33,21 @@ public class TestRSA {
             sigList.add(rsa.signature((String)messageList.get(i),privateKey,modulus));
         }
 
+        //watch out where to put stopwatch
+        Stopwatch stopwatch = Stopwatch.createStarted();
+        //verify single signature
+        byte[] sig = rsa.signature((String)messageList.get(1), privateKey, modulus);
+        byte[] messageByte = ((String) messageList.get(1)).getBytes();
+        System.out.println("Verification one signature: " + rsa.verify(sig, messageByte,publicKey,modulus));
+        System.out.println("Run Time for single signature verification : " + stopwatch.elapsed(TIME_UNIT) + " ms");
+        stopwatch.reset();
 
+        //verify condensed signature
+        stopwatch.start();
         byte[] condSig = rsa.condensedRSASignature(sigList, keyFile);
         byte[] prodMessage = rsa.messageMultiplication(messageList,keyFile);
-
-        System.out.println("Verification result: "  + rsa.verify(condSig, prodMessage, publicKey, modulus));
-
+        System.out.println("Verification result: "  + rsa.verifyCondensedRSA(condSig, prodMessage, publicKey, modulus));
+        System.out.println("Run Time for condensed signature verification : " + stopwatch.elapsed(TIME_UNIT) + " ms");
 
     }
 

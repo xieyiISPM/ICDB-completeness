@@ -1,9 +1,10 @@
-package rsa;
+package cryto;
 
 import java.io.*;
 import java.math.BigInteger;
+import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class RSA {
@@ -126,17 +127,23 @@ public class RSA {
         return privateKey;
     }
 
-    public byte[] signature(String message, BigInteger privateKey, BigInteger modulus){
+
+
+    public byte[] signature(String message, BigInteger privateKey, BigInteger modulus) throws NoSuchAlgorithmException {
+        HashOp hashOP = new HashOp();
         byte[] messageByte =message.getBytes();
-        BigInteger messageBGInt = new BigInteger(messageByte);
+
+        BigInteger messageBGInt = new BigInteger(hashOP.getHashByte(messageByte));
         BigInteger signature = messageBGInt.modPow(privateKey, modulus);
         return signature.toByteArray();
     }
 
-    public boolean verify(byte[] signature, byte[] messageByte, BigInteger publicKey, BigInteger modulus){
+    public boolean verify(byte[] signature, byte[] messageByte, BigInteger publicKey, BigInteger modulus) throws NoSuchAlgorithmException {
+        HashOp hashOp = new HashOp();
+
         BigInteger signatureBGInt = new BigInteger(signature);
         BigInteger verificationCode = signatureBGInt.modPow(publicKey, modulus);
-        BigInteger messageBGInt = new BigInteger(messageByte);
+        BigInteger messageBGInt = new BigInteger(hashOp.getHashByte(messageByte));
         if (verificationCode.compareTo(messageBGInt)== 0){
             return true;
         }
@@ -144,9 +151,10 @@ public class RSA {
             return false;
     }
 
-    public byte[] condensedRSASignature(LinkedList<byte[]> sigList, String keyFile){
+    public byte[] condensedRSASignature(ArrayList<byte[]> sigList, String keyFile) throws NoSuchAlgorithmException {
         BigInteger condSig = BigInteger.ONE;
         BigInteger modulus = getModulus(keyFile);
+       // HashOp hashOp = new HashOp();
 
         for(byte[] signature: sigList){
             BigInteger sigBGInt = new BigInteger(signature);
@@ -155,16 +163,28 @@ public class RSA {
         return condSig.toByteArray();
     }
 
-    public byte[] messageMultiplication(LinkedList<String> messageList, String keyFile){
+    public byte[] messageMultiplication(ArrayList<String> messageList, String keyFile) throws NoSuchAlgorithmException {
         BigInteger prod = BigInteger.ONE;
         BigInteger modulus = getModulus(keyFile);
-
+        HashOp hashOP = new HashOp();
         for (String message: messageList){
             byte[] messageByte = message.getBytes();
-            BigInteger messageBGInt = new BigInteger(messageByte);
+            BigInteger messageBGInt = new BigInteger(hashOP.getHashByte(messageByte));
             prod = (prod.multiply(messageBGInt.mod(modulus))).mod(modulus);
         }
         return prod.toByteArray();
+    }
+
+    public boolean verifyCondensedRSA(byte[] condSig, byte[] messageProd, BigInteger publicKey, BigInteger modulus) throws NoSuchAlgorithmException {
+
+        BigInteger signatureBGInt = new BigInteger(condSig);
+        BigInteger verificationCode = signatureBGInt.modPow(publicKey, modulus);
+        BigInteger messageBGInt = new BigInteger(messageProd);
+        if (verificationCode.compareTo(messageBGInt)== 0){
+            return true;
+        }
+        else
+            return false;
     }
 
 
