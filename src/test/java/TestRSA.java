@@ -13,7 +13,7 @@ public class TestRSA {
 
         ArrayList sigList = new ArrayList<byte[]>();
         ArrayList messageList = new ArrayList<String>();
-        int num = 300000;
+        int num = 30000;
         for(int i= 0; i < num; i++){
             messageList.add(new String("message" + i));
         }

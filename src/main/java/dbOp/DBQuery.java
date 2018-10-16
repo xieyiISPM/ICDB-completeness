@@ -1,5 +1,4 @@
 package dbOp;
-import java.io.IOException;
 import java.sql.*;
 import java.util.*;
 
@@ -21,8 +20,9 @@ public class DBQuery {
         System.out.println("Using database " + schemaName + "...");
     }
 
-    public LinkedList<LinkedList> queryDB(String sql) throws SQLException{
-        LinkedList<LinkedList> tupleList = new LinkedList<LinkedList>();
+    @SuppressWarnings("Duplicates")
+    public ArrayList<ArrayList> queryDB(String sql) throws SQLException{
+        ArrayList<ArrayList> tupleList = new ArrayList<>();
 
         PreparedStatement stmt = conn.prepareStatement(sql);
         ResultSet resultSet = stmt.executeQuery(sql);
@@ -30,7 +30,7 @@ public class DBQuery {
         int columnNum = rsmd.getColumnCount();
 
         while(resultSet.next()) {
-            LinkedList fieldList = new LinkedList<String>();
+            ArrayList fieldList = new ArrayList<String>();
             for (int i = 1; i <= columnNum; i++) {
                 fieldList.add(resultSet.getString(i).trim());
             }
@@ -39,7 +39,9 @@ public class DBQuery {
         return tupleList;
     }
 
-    public LinkedList<LinkedList> getOrderedTuple(String sql) throws SQLException {
+
+
+    public ArrayList<ArrayList> getOrderedTuple(String sql) throws SQLException {
         return queryDB(sql);
     }
 
@@ -57,8 +59,8 @@ public class DBQuery {
         }
     }
 
-    public void outputTuple(LinkedList<LinkedList> tupleList){
-        for(LinkedList<String> tuple: tupleList){
+    public void outputTuple(ArrayList<ArrayList> tupleList){
+        for(ArrayList<String> tuple: tupleList){
             String tupleString="";
             for(String field: tuple){
                 tupleString += field + ",";

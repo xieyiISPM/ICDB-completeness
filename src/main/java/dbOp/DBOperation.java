@@ -1,19 +1,18 @@
 package dbOp;
 
-import org.checkerframework.checker.units.qual.A;
-
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class DBOperation {
 
     private Connection conn = null;
     private String schema = null;
 
-    public DBOperation(Connection conn, String schema){
+    public DBOperation(Connection conn, String schema) throws SQLException {
         this.conn = conn;
         this.schema = schema;
+        DBQuery dbQuery = new DBQuery(schema, conn);
+        dbQuery.useDB();
     }
 
     /**
@@ -22,9 +21,9 @@ public class DBOperation {
      * @return
      * @throws SQLException
      */
+    @SuppressWarnings("Duplicates")
     public ArrayList<ArrayList> getOrderedTupleList(String sql) throws SQLException {
-        DBQuery dbQuery = new DBQuery(schema, conn);
-        dbQuery.useDB();
+
         ArrayList<ArrayList> orderedTupleList = new ArrayList<ArrayList>();
 
         PreparedStatement stmt = conn.prepareStatement(sql);
@@ -69,6 +68,30 @@ public class DBOperation {
         }
 
     }
+
+    @SuppressWarnings("Duplicates")
+    public ArrayList<ArrayList> getOCAfield(String sql) throws SQLException{
+        ArrayList<ArrayList> tupleOCAList = new ArrayList<>();
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        ResultSet resultSet = stmt.executeQuery(sql);
+        //ResultSetMetaData rsmd = resultSet.getMetaData();
+        //int columnNum = rsmd.getColumnCount();
+
+        while(resultSet.next()) {
+            ArrayList fieldList = new ArrayList<String>();
+
+            fieldList.add(resultSet.getString(2).trim()); //"salary" column
+            fieldList.add(resultSet.getString(1).trim());//"emp_no" column
+            fieldList.add(resultSet.getString(3).trim());//"from_date" column
+            fieldList.add(resultSet.getString(7).trim()); //"serial" column
+
+            tupleOCAList.add(fieldList);
+        }
+        return tupleOCAList;
+
+    }
+
+
 
 
 }

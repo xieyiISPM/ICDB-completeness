@@ -2,7 +2,7 @@ package dbOp;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class DBPrepare {
     private String COMMA_DELIMITER =",";
@@ -13,11 +13,11 @@ public class DBPrepare {
     }
 
 
-    public void writeCSVFile(LinkedList<LinkedList> tupleList, String fileName){
+    public void writeCSVFile(ArrayList<ArrayList> tupleList, String fileName){
         FileWriter fileWriter = null;
         try{
             fileWriter = new FileWriter(fileName, false);
-            for (LinkedList<String> tuple: tupleList){
+            for (ArrayList<String> tuple: tupleList){
                 for (String field: tuple){
                     fileWriter.append(field);
                     fileWriter.append(COMMA_DELIMITER);
