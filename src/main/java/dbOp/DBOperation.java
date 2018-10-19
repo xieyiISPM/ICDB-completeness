@@ -22,9 +22,9 @@ public class DBOperation {
      * @throws SQLException
      */
     @SuppressWarnings("Duplicates")
-    public ArrayList<ArrayList> getOrderedTupleList(String sql) throws SQLException {
+    public ArrayList<ArrayList<String>> getOrderedTupleList(String sql) throws SQLException {
 
-        ArrayList<ArrayList> orderedTupleList = new ArrayList<ArrayList>();
+        ArrayList<ArrayList<String>> orderedTupleList = new ArrayList<ArrayList<String>>();
 
         PreparedStatement stmt = conn.prepareStatement(sql);
         ResultSet resultSet = stmt.executeQuery(sql);
@@ -33,52 +33,34 @@ public class DBOperation {
 
         while(resultSet.next()) {
             ArrayList fieldList = new ArrayList<String>();
-            for (int i = 1; i <= columnNum; i++) {
-                fieldList.add(resultSet.getString(i).trim());
-            }
+            /*for (int i = 1; i <= columnNum; i++) {
+                if(resultSet.getString(i) !=null) {
+                    fieldList.add(resultSet.getString(i).trim());
+                }
+            }*/
+
+
+            fieldList.add(resultSet.getString(2).trim()); //"salary" column
+            fieldList.add(resultSet.getString(1).trim());//"emp_no" column
+            fieldList.add(resultSet.getString(3).trim());//"from_date" column
+            fieldList.add(resultSet.getString(7).trim()); //"serial" column
             orderedTupleList.add(fieldList);
         }
         return orderedTupleList;
     }
 
-    public int getTupleIndex(ArrayList<ArrayList> orderedTupleList, int primaryKey){
-        for(ArrayList<String> tuple: orderedTupleList){
-                if(primaryKey == Integer.parseInt(tuple.get(0))){
-                    return tuple.indexOf(tuple);
-                }
-        }
-        return -1;
-    }
 
-    public ArrayList getPredecessor(int index, ArrayList<ArrayList> orderedTupleList){
-        if(index !=0){
-            return orderedTupleList.get(index-1);
-        }
-        else {
-            return null;
-        }
-    }
-
-    public ArrayList getSuccessor(int index, ArrayList<ArrayList> orderedTupleList){
-        if(index != orderedTupleList.size() -1 ){
-            return orderedTupleList.get(index + 1);
-        }
-        else{
-            return null;
-        }
-
-    }
 
     @SuppressWarnings("Duplicates")
-    public ArrayList<ArrayList> getOCAfield(String sql) throws SQLException{
-        ArrayList<ArrayList> tupleOCAList = new ArrayList<>();
+    public ArrayList<ArrayList<String>> getOCAfield(String sql) throws SQLException{
+        ArrayList<ArrayList<String>> tupleOCAList = new ArrayList<>();
         PreparedStatement stmt = conn.prepareStatement(sql);
         ResultSet resultSet = stmt.executeQuery(sql);
         //ResultSetMetaData rsmd = resultSet.getMetaData();
         //int columnNum = rsmd.getColumnCount();
 
         while(resultSet.next()) {
-            ArrayList fieldList = new ArrayList<String>();
+            ArrayList<String> fieldList = new ArrayList<String>();
 
             fieldList.add(resultSet.getString(2).trim()); //"salary" column
             fieldList.add(resultSet.getString(1).trim());//"emp_no" column
