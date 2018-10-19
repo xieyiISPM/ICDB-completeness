@@ -53,7 +53,7 @@ public class TestMyQL {
             stopwatch.start();
 
 
-            ArrayList<ArrayList<String>> ocaFieldList = dbOp.getOCAfield(sql);
+            //ArrayList<ArrayList<String>> ocaFieldList = dbOp.getOCAfield(sql);
 
             GenSig genSig = new GenSig();
             /*ArrayList<String> ocaList = genSig.ocaConcatenate(ocaFieldList, orderedTupleList, attrName, tableName);
@@ -63,12 +63,17 @@ public class TestMyQL {
 
             long concatenatedTime = stopwatch.elapsed(TIME_UNIT);
             System.out.println("Concatenated oca time: " + concatenatedTime+ "ms" );
-            System.out.println("ConcatenatedTime / orderedTuplelistTime= " + concatenatedTime/orderedTupleListTime);*/
+            System.out.println("ConcatenatedTime / orderedTuplelistTime= " + concatenatedTime/orderedTupleListTime);
 
             ArrayList<byte[]> sigList = genSig.genSignature(ocaFieldList, orderedTupleList, attrName, tableName, keyFile);
             for(byte[] sig: sigList){
                 System.out.println(new String(sig));
-            }
+            }*/
+
+
+
+            genSig.updateOrderedList(orderedTupleList,attrName, tableName,keyFile);
+            
             long signingTime = stopwatch.elapsed(TIME_UNIT);
             System.out.println("Signing time: " + signingTime+ "ms" );
 

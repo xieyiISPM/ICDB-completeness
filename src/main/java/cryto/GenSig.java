@@ -3,11 +3,41 @@ package cryto;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Base64;
 
 public class GenSig {
 
     public GenSig(){
 
+    }
+
+    public ArrayList<ArrayList<String>> updateOrderedList(ArrayList<ArrayList<String>> orderTupleList, String attrName, String tableName, String keyFile) throws NoSuchAlgorithmException {
+        RSA rsa = new RSA();
+        for(int i = 0; i< orderTupleList.size(); i++){
+
+            String oca = "";
+            String attrValue = orderTupleList.get(i).get(1);
+            String key1 = orderTupleList.get(i).get(0);
+            String key2 = orderTupleList.get(i).get(2);
+
+            String serialNum = orderTupleList.get(i).get(4);
+
+            oca = oca + attrValue + "|" + key1 + key2 + attrName + tableName + serialNum ;
+
+            if(i != 0){
+                String preAttrValue = orderTupleList.get(i - 1).get(1);
+                String preKey1 = orderTupleList.get(i-1).get(0);
+                String preKey2 = orderTupleList.get(i-1).get(2);
+                String preSerialNum = orderTupleList.get(i-1).get(4);
+
+                oca = oca + preAttrValue + "|" + preKey1 + preKey2 + preSerialNum;
+            }
+
+            byte[] signature = rsa.signature(oca, rsa.getPrivateKey(keyFile),rsa.getModulus(keyFile));
+            orderTupleList.get(i).add(Base64.getEncoder().encodeToString(signature));
+
+        }
+        return orderTupleList;
     }
 
     public ArrayList genSignature(ArrayList<ArrayList<String>> ocaFieldList,

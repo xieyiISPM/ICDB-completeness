@@ -40,9 +40,10 @@ public class DBOperation {
             }*/
 
 
-            fieldList.add(resultSet.getString(2).trim()); //"salary" column
-            fieldList.add(resultSet.getString(1).trim());//"emp_no" column
+            fieldList.add(resultSet.getString(1).trim()); //"emp_no" column
+            fieldList.add(resultSet.getString(2).trim());//"salary" column
             fieldList.add(resultSet.getString(3).trim());//"from_date" column
+            fieldList.add(resultSet.getString(4).trim()); //"to_date" column
             fieldList.add(resultSet.getString(7).trim()); //"serial" column
             orderedTupleList.add(fieldList);
         }
