@@ -1,23 +1,22 @@
+package io;
+
 import com.google.common.base.Stopwatch;
 import conn.MySQLConn;
 import cryto.GenSig;
-import dbOp.DBOperation;
-import dbOp.DBPrepare;
-import dbOp.DBQuery;
+import dbOp.*;
 
 import java.security.NoSuchAlgorithmException;
-import java.sql.Array;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-public class TestMyQL {
+public class ConvertTable {
     public static void main(String[] args) throws NoSuchAlgorithmException {
         String schemaName = "employees_icdb_completeness";
         String tableName = "salaries";
         String password = "113071";
-        String fileName = "data/employees_sorted.csv";
+        String fileName = "data/employees_sorted_icdb_completeness.csv";
         String attrName = "salary";
         String primaryKey = "emp_no, from_date";
         String keyFile ="secret/keyFile.txt";
@@ -27,21 +26,16 @@ public class TestMyQL {
             MySQLConn connection = new MySQLConn(schemaName, password);
             Connection conn= connection.getConn();
 
-            /*Test DBPrepare class
             DBQuery dbQuery = new DBQuery(schemaName, conn);
             dbQuery.useDB();
-            String sql="SELECT * FROM " +schemaName + " ORDER BY hire_date, emp_no;"; //Warning: missed table name
-            dbQuery.outputTuple(dbQuery.queryDB(sql));
-            System.out.println("Creating csv file...");
-            DBPrepare dbPrepare = new DBPrepare();
-            dbPrepare.writeCSVFile(dbQuery.queryDB(sql), fileName);
-            dbQuery.importDataToDB(fileName, "employees_sorted");
-            */
+            dbQuery.importDataToDB(fileName, "salaries_comp");
+            long loadTableTime = stopwatch.elapsed(TIME_UNIT);
+
+            System.out.println("Load table time: " + loadTableTime+ "ms" );
 
 
-            /* Test getOCAfield*/
-            DBOperation dbOp = new DBOperation(conn, schemaName);
-            String sql="SELECT * FROM " +schemaName +"." +tableName  + " LIMIT 50000;";
+
+            /*DBOperation dbOp = new DBOperation(conn, schemaName);
             String sqlOrdered = "SELECT * FROM " +schemaName +"." +tableName + " ORDER BY " +  attrName +", "+ primaryKey + " ;" ;
 
 
@@ -51,37 +45,16 @@ public class TestMyQL {
             System.out.println("Create ordered tuple list done in: " + orderedTupleListTime+ "ms" );
             stopwatch.reset();
             stopwatch.start();
-
-
-            //ArrayList<ArrayList<String>> ocaFieldList = dbOp.getOCAfield(sql);
-
+            System.out.println("Generating signature...");
             GenSig genSig = new GenSig();
-            /*ArrayList<String> ocaList = genSig.ocaConcatenate(ocaFieldList, orderedTupleList, attrName, tableName);
-            for(String oca: ocaList){
-                System.out.println(oca);
-            }
-
-            long concatenatedTime = stopwatch.elapsed(TIME_UNIT);
-            System.out.println("Concatenated oca time: " + concatenatedTime+ "ms" );
-            System.out.println("ConcatenatedTime / orderedTuplelistTime= " + concatenatedTime/orderedTupleListTime);
-
-            ArrayList<byte[]> sigList = genSig.genSignature(ocaFieldList, orderedTupleList, attrName, tableName, keyFile);
-            for(byte[] sig: sigList){
-                System.out.println(new String(sig));
-            }*/
-
-
-
             genSig.updateOrderedList(orderedTupleList,attrName, tableName,keyFile);
-
+            System.out.println("Creating csv file...");
+            DBPrepare dbPrepare = new DBPrepare();
+            dbPrepare.writeCSVFile(orderedTupleList, fileName);
             long signingTime = stopwatch.elapsed(TIME_UNIT);
-            System.out.println("Signing time: " + signingTime+ "ms" );
 
-
-
-
-
-
+            System.out.println("get ICDB-completeness signature time: " + signingTime+ "ms" );
+*/
             connection.closeConn();
         }
         catch (SQLException sqlEx){

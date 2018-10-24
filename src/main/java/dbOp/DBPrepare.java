@@ -13,7 +13,7 @@ public class DBPrepare {
     }
 
 
-    public void writeCSVFile(ArrayList<ArrayList> tupleList, String fileName){
+    public void writeCSVFile(ArrayList<ArrayList<String>> tupleList, String fileName){
         FileWriter fileWriter = null;
         try{
             fileWriter = new FileWriter(fileName, false);
