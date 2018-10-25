@@ -59,7 +59,7 @@ public class DBQuery {
         }
     }
 
-    public void outputTuple(ArrayList<ArrayList> tupleList){
+    public void outputTuple(ArrayList<ArrayList<String>> tupleList){
         for(ArrayList<String> tuple: tupleList){
             String tupleString="";
             for(String field: tuple){

@@ -74,6 +74,43 @@ public class DBOperation {
 
     }
 
+    @SuppressWarnings("Duplicates")
+    public ArrayList<ArrayList<String>> queryDB(String sql) throws SQLException{
+        ArrayList<ArrayList<String>> tupleList = new ArrayList<>();
+
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        ResultSet resultSet = stmt.executeQuery(sql);
+        ResultSetMetaData rsmd = resultSet.getMetaData();
+        int columnNum = rsmd.getColumnCount();
+
+        while(resultSet.next()) {
+            ArrayList fieldList = new ArrayList<String>();
+            for (int i = 1; i <= columnNum; i++) {
+                fieldList.add(resultSet.getString(i).trim());
+            }
+            tupleList.add(fieldList);
+        }
+        return tupleList;
+    }
+
+    public ArrayList<ArrayList<String>> sortTable(String sql) throws SQLException{
+        ArrayList<ArrayList<String>> tupleList = new ArrayList<>();
+
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        ResultSet resultSet = stmt.executeQuery(sql);
+        ResultSetMetaData rsmd = resultSet.getMetaData();
+        int columnNum = rsmd.getColumnCount();
+
+        while(resultSet.next()) {
+            ArrayList fieldList = new ArrayList<String>();
+            for (int i = 1; i <= columnNum-1; i++) {
+                fieldList.add(resultSet.getString(i).trim());
+            }
+            tupleList.add(fieldList);
+        }
+        return tupleList;
+    }
+
 
 
 

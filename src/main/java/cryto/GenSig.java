@@ -11,7 +11,9 @@ public class GenSig {
 
     }
 
-    public ArrayList<ArrayList<String>> updateOrderedList(ArrayList<ArrayList<String>> orderTupleList, String attrName, String tableName, String keyFile) throws NoSuchAlgorithmException {
+    public ArrayList<ArrayList<String>> updateOrderedList(ArrayList<ArrayList<String>> orderTupleList,
+                                                          String attrName, String tableName,
+                                                          String keyFile) throws NoSuchAlgorithmException {
         RSA rsa = new RSA();
         for(int i = 0; i< orderTupleList.size(); i++){
 
@@ -89,7 +91,7 @@ public class GenSig {
         for (int i = 0; i < orderedTupleList.size(); i++){
             ArrayList<String> tuple = orderedTupleList.get(i);
 
-            if(key1 == Integer.parseInt(tuple.get(1)) && key2.equals(tuple.get(2))){
+            if(key1 == Integer.parseInt(tuple.get(0)) && key2.equals(tuple.get(2))){
                 return i;
             }
         }
@@ -106,7 +108,7 @@ public class GenSig {
         }
     }
 
-    public ArrayList getSuccessor(int index, ArrayList<ArrayList> orderedTupleList){
+    public ArrayList getSuccessor(int index, ArrayList<ArrayList<String>> orderedTupleList){
         if(index != orderedTupleList.size() -1 ){
             return orderedTupleList.get(index + 1);
         }
