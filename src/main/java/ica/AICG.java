@@ -1,12 +1,14 @@
 package ica;
 
+import cryto.RSA;
 import dbOp.DBOperation;
 import cryto.GenSig;
 
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.Base64;
 
 public class AICG {
         private Connection conn;
@@ -48,6 +50,20 @@ public class AICG {
             tnList.add(genSig.getSuccessor(tailIndex,orderedTupleList));
 
             return tnList;
+        }
+
+        public byte[] genCondensedRSA(ArrayList<ArrayList<String>> tsList, String keyFile) throws NoSuchAlgorithmException {
+            ArrayList<byte[]> sigList = new ArrayList<>();
+            int sigIndex = tsList.get(0).size() -1;
+            for(ArrayList<String> tuple: tsList){
+                sigList.add(Base64.getDecoder().decode(tuple.get(sigIndex)));
+            }
+            if(sigList!=null){
+                RSA rsa = new RSA();
+                byte[] condensedRSASig = rsa.condensedRSASignature(sigList, keyFile);
+                return condensedRSASig;
+            }
+            return null;
         }
 
 
