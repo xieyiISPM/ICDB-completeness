@@ -28,8 +28,8 @@ public class GenSig {
 
             if(i != 0){
                 String preAttrValue = orderTupleList.get(i - 1).get(1);
-                String preKey1 = orderTupleList.get(i-1).get(0);
-                String preKey2 = orderTupleList.get(i-1).get(2);
+                String preKey1 = orderTupleList.get(i).get(5);
+                String preKey2 = orderTupleList.get(i).get(6);
                 String preSerialNum = orderTupleList.get(i-1).get(4);
 
                 oca = oca + preAttrValue + "|" + preKey1 + preKey2 + preSerialNum;

@@ -30,6 +30,8 @@ public class DBOperation {
         ResultSet resultSet = stmt.executeQuery(sql);
         ResultSetMetaData rsmd = resultSet.getMetaData();
         int columnNum = rsmd.getColumnCount();
+        String preEmp_no = "";
+        String preFrom_date ="";
 
         while(resultSet.next()) {
             ArrayList fieldList = new ArrayList<String>();
@@ -39,13 +41,20 @@ public class DBOperation {
                 }
             }*/
 
+            String currentEmp_no = resultSet.getString(1).trim();
+            String currentFrom_date = resultSet.getString(3).trim();
 
-            fieldList.add(resultSet.getString(1).trim()); //"emp_no" column
+
+            fieldList.add(currentEmp_no); //"emp_no" column
             fieldList.add(resultSet.getString(2).trim());//"salary" column
-            fieldList.add(resultSet.getString(3).trim());//"from_date" column
+            fieldList.add(currentFrom_date);//"from_date" column
             fieldList.add(resultSet.getString(4).trim()); //"to_date" column
             fieldList.add(resultSet.getString(6).trim()); //"serial" column
+            fieldList.add(preEmp_no);
+            fieldList.add(preFrom_date);
             orderedTupleList.add(fieldList);
+            preEmp_no = currentEmp_no;
+            preFrom_date = currentFrom_date;
         }
         return orderedTupleList;
     }

@@ -16,7 +16,7 @@ public class ICDBManager {
     public static void main(String[] args){
         ArrayList<ArrayList<String>> tsList, tnList;
         String schemaName = "employees_icdb_completeness";
-        String tableName = "salaries_comp";
+        String tableName = "salaries_comp_withPre";
         String origTableName="salaries";
         String password = "113071";
         String ocaAttr = "salary";
@@ -24,6 +24,7 @@ public class ICDBManager {
         String keyFile ="secret/keyFile.txt";
         TimeUnit TIME_UNIT = TimeUnit.MILLISECONDS;
         ArrayList<String> ocaList;
+        int testNum = 160000;
 
         try{
             Stopwatch stopwatch = Stopwatch.createStarted();
@@ -33,23 +34,35 @@ public class ICDBManager {
             /* Test getOCAfield*/
             AICG aicg = new AICG(conn, schemaName, tableName, primaryAttr, ocaAttr);
             //String sql="SELECT * FROM " +schemaName +"." +tableName  + " WHERE salary >= 38888 AND salary <=38928 ORDER BY salary, emp_no, from_date; ";
-            String sql="SELECT * FROM " +schemaName +"." +tableName  + " WHERE salary >= 38888 ORDER BY salary, emp_no, from_date LIMIT 200000; ";
+            String sql="SELECT * FROM " +schemaName +"." +tableName  + " WHERE salary >= 38888 ORDER BY salary, emp_no, from_date LIMIT  " + testNum + ";";
+
+            System.out.println("Test number of tuples: " + testNum);
 
             String sqlOrdered = "SELECT * FROM " +schemaName +"." +tableName + " ORDER BY " +  ocaAttr +", "+ primaryAttr[0] + ", " + primaryAttr[1]+ " ;" ;
 
-            DBQuery dbQuery = new DBQuery(schemaName,conn);
+           // DBQuery dbQuery = new DBQuery(schemaName,conn);
 
-            System.out.println("Collecting Ts list...");
+            System.out.print("Collecting Ts (Query return set) list...");
             tsList = aicg.getTsList(sql);
             //dbQuery.outputTuple(tsList);
-
-
-            System.out.println("Collecting Tn list:");
-            tnList = aicg.getTnList(primaryAttr,sqlOrdered);
-            //dbQuery.outputTuple(tnList);
-
+            System.out.println(" done");
             long timer = stopwatch.elapsed(TIME_UNIT);
-            System.out.println("tn looking for time: " + timer+ "ms" );
+            System.out.println("ts (Query Return set) collecting time: " + timer+ "ms" );
+            stopwatch.reset();
+            stopwatch.start();
+            System.out.println();
+
+            System.out.print("Collecting Tn list...");
+            //tnList = aicg.getTnList(primaryAttr,sqlOrdered);
+            tnList = aicg.getTnList2();
+
+            //dbQuery.outputTuple(tnList);
+            System.out.println(" done");
+            timer = stopwatch.elapsed(TIME_UNIT);
+            System.out.println("tn (predecessor/successor  looking-for time: " + timer+ "ms" );
+            System.out.println();
+
+
             stopwatch.reset();
             stopwatch.start();
             ocaList = getOCAList(tsList, tnList, ocaAttr, origTableName, primaryAttr);
@@ -63,7 +76,6 @@ public class ICDBManager {
             byte[] condensedRSA = aicg.genCondensedRSA(tsList,keyFile);
             boolean verified = rsa.verifyCondensedRSA(condensedRSA,ocaMul,rsa.getPublicKey(keyFile),rsa.getModulus(keyFile));
             System.out.println("Verification result: " + verified);
-
             timer = stopwatch.elapsed(TIME_UNIT);
             System.out.println("Verification time: " + timer+ "ms" );
 

@@ -21,8 +21,8 @@ public class DBQuery {
     }
 
     @SuppressWarnings("Duplicates")
-    public ArrayList<ArrayList> queryDB(String sql) throws SQLException{
-        ArrayList<ArrayList> tupleList = new ArrayList<>();
+    public ArrayList<ArrayList<String>> queryDB(String sql) throws SQLException{
+        ArrayList<ArrayList<String>> tupleList = new ArrayList<>();
 
         PreparedStatement stmt = conn.prepareStatement(sql);
         ResultSet resultSet = stmt.executeQuery(sql);
@@ -41,7 +41,7 @@ public class DBQuery {
 
 
 
-    public ArrayList<ArrayList> getOrderedTuple(String sql) throws SQLException {
+    public ArrayList<ArrayList<String>> getOrderedTuple(String sql) throws SQLException {
         return queryDB(sql);
     }
 
@@ -63,6 +63,18 @@ public class DBQuery {
         for(ArrayList<String> tuple: tupleList){
             String tupleString="";
             for(String field: tuple){
+                tupleString += field + ",";
+            }
+            System.out.println(tupleString);
+        }
+    }
+
+    public void outputTupleWithPreTuple(ArrayList<ArrayList<String>> tupleList){
+        for(int i=0; i< tupleList.size(); i++){
+            String tupleString="";
+            ArrayList<String> tuple = tupleList.get(i);
+            for(int j = 0; j< tuple.size();i++){
+                String field = tuple.get(j);
                 tupleString += field + ",";
             }
             System.out.println(tupleString);

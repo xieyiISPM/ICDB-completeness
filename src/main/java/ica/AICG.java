@@ -3,6 +3,7 @@ package ica;
 import cryto.RSA;
 import dbOp.DBOperation;
 import cryto.GenSig;
+import dbOp.DBQuery;
 
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
@@ -48,6 +49,21 @@ public class AICG {
 
             int tailIndex = genSig.getTupleIndex(orderedTupleList, Integer.parseInt(tsTail.get(0)), tsTail.get(2));
             tnList.add(genSig.getSuccessor(tailIndex,orderedTupleList));
+
+            return tnList;
+        }
+
+        public ArrayList<ArrayList<String>> getTnList2() throws SQLException{
+            ArrayList<ArrayList<String>> tnList = new ArrayList<>();
+            String sqlPre = "SELECT * from " + schema + "." + tableName +
+                            " WHERE emp_no = " + tsHead.get(5) + " AND " + "from_date = '" + tsHead.get(6) + "' ;";
+            String sqlSuc = "SELECT * from " + schema + "." + tableName +
+                             " WHERE emp_no = " + tsTail.get(5) + " AND " + "from_date = '" + tsTail.get(6) + "';";
+
+            ArrayList<ArrayList<String>> tuplePre = dbOperation.queryDB(sqlPre);
+            ArrayList<ArrayList<String>> tupleSuc = dbOperation.queryDB(sqlSuc);
+            tnList.add(tuplePre.get(0));
+            tnList.add(tupleSuc.get(0));
 
             return tnList;
         }
