@@ -24,8 +24,8 @@ public class TestICA {
 
             /* Test getOCAfield*/
             AICG aicg = new AICG(conn, schemaName, tableName, primaryAttr, ocaAttr);
-            //String sql="SELECT * FROM " +schemaName +"." +tableName  + " WHERE salary >= 38888 AND salary <=38928 ORDER BY salary, emp_no, from_date; ";
-            String sql="SELECT * FROM " +schemaName +"." +tableName  + " WHERE salary >= 38888 ORDER BY salary, emp_no, from_date LIMIT 200000; ";
+            String sql="SELECT * FROM " +schemaName +"." +tableName  + " WHERE salary >= 38888 AND salary <=38928 ORDER BY salary, emp_no, from_date; ";
+            //String sql="SELECT * FROM " +schemaName +"." +tableName  + " WHERE salary >= 38888 ORDER BY salary, emp_no, from_date LIMIT 200000; ";
 
             //String sqlOrdered = "SELECT * FROM " +schemaName +"." +tableName + " ORDER BY " +  ocaAttr +", "+ primaryAttr[0] + ", " + primaryAttr[1]+ " ;" ;
             ArrayList<ArrayList<String>> tsList = aicg.getTsList(sql);
@@ -33,7 +33,7 @@ public class TestICA {
 
             DBQuery dbQuery = new DBQuery(schemaName,conn);
             System.out.println("Ts list:");
-            //dbQuery.outputTuple(tsList);
+            dbQuery.outputTuple(tsList);
 
             long tsTimer = stopwatch.elapsed(TIME_UNIT);
             System.out.println("Ts list retrieving time: " + tsTimer);
@@ -44,7 +44,7 @@ public class TestICA {
             //ArrayList<ArrayList<String>> tnList = aicg.getTnList(primaryAttr,sqlOrdered);
             ArrayList<ArrayList<String>> tnList = aicg.getTnList2();
 
-            //dbQuery.outputTuple(tnList);
+            dbQuery.outputTuple(tnList);
 
             long tnTimer = stopwatch.elapsed(TIME_UNIT);
             System.out.println("Tn time: " + tnTimer+ "ms" );

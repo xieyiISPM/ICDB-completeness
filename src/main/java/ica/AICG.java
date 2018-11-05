@@ -69,6 +69,7 @@ public class AICG {
         }
 
         public byte[] genCondensedRSA(ArrayList<ArrayList<String>> tsList, String keyFile) throws NoSuchAlgorithmException {
+
             ArrayList<byte[]> sigList = new ArrayList<>();
             int sigIndex = tsList.get(0).size() -1;
             for(ArrayList<String> tuple: tsList){

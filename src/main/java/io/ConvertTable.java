@@ -16,7 +16,7 @@ public class ConvertTable {
         String schemaName = "employees_icdb_completeness";
         String tableName = "salaries";
         String password = "113071";
-        String fileName = "data/employees_sorted_icdb_comp_withPre.csv";
+        String fileName = "data/employees_sorted_icdb_comp_withPreSucc.csv";
         String attrName = "salary";
         String primaryKey = "emp_no, from_date";
         String keyFile ="secret/keyFile.txt";
@@ -60,7 +60,7 @@ public class ConvertTable {
 
             DBQuery dbQuery = new DBQuery(schemaName, conn);
             dbQuery.useDB();
-            dbQuery.importDataToDB(fileName, "salaries_comp_withPre");
+            dbQuery.importDataToDB(fileName, "salaries_comp_withPreSucc");
 
             long loadTableTime = stopwatch.elapsed(TIME_UNIT);
 

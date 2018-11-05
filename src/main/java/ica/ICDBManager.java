@@ -24,7 +24,7 @@ public class ICDBManager {
         String keyFile ="secret/keyFile.txt";
         TimeUnit TIME_UNIT = TimeUnit.MILLISECONDS;
         ArrayList<String> ocaList;
-        int testNum = 160000;
+        int testNum = 200000;
 
         try{
             Stopwatch stopwatch = Stopwatch.createStarted();
@@ -33,8 +33,10 @@ public class ICDBManager {
 
             /* Test getOCAfield*/
             AICG aicg = new AICG(conn, schemaName, tableName, primaryAttr, ocaAttr);
-            //String sql="SELECT * FROM " +schemaName +"." +tableName  + " WHERE salary >= 38888 AND salary <=38928 ORDER BY salary, emp_no, from_date; ";
-            String sql="SELECT * FROM " +schemaName +"." +tableName  + " WHERE salary >= 38888 ORDER BY salary, emp_no, from_date LIMIT  " + testNum + ";";
+            String sql="SELECT * FROM " +schemaName +"." +tableName  + " WHERE salary >= 38812 AND salary <=38888 ORDER BY salary, emp_no, from_date; ";
+            //String sql="SELECT * FROM " +schemaName +"." +tableName  + " WHERE salary >= 38888 ORDER BY salary, emp_no, from_date LIMIT  " + testNum + ";";
+            //String sql="SELECT * FROM " +schemaName +"." +tableName  + "  LIMIT  " + testNum + ";";
+
 
             System.out.println("Test number of tuples: " + testNum);
 
@@ -62,6 +64,13 @@ public class ICDBManager {
             System.out.println("tn (predecessor/successor  looking-for time: " + timer+ "ms" );
             System.out.println();
 
+            stopwatch.reset();
+            stopwatch.start();
+            byte[] condensedRSA = aicg.genCondensedRSA(tsList,keyFile);
+            long AggTimer = stopwatch.elapsed(TIME_UNIT);
+            System.out.println("Aggregated signature time: " + AggTimer + "ms" );
+            System.out.println();
+
 
             stopwatch.reset();
             stopwatch.start();
@@ -73,7 +82,10 @@ public class ICDBManager {
 
             RSA rsa = new RSA();
             byte[] ocaMul = rsa.messageMultiplication(ocaList,keyFile);
-            byte[] condensedRSA = aicg.genCondensedRSA(tsList,keyFile);
+
+
+
+
             boolean verified = rsa.verifyCondensedRSA(condensedRSA,ocaMul,rsa.getPublicKey(keyFile),rsa.getModulus(keyFile));
             System.out.println("Verification result: " + verified);
             timer = stopwatch.elapsed(TIME_UNIT);

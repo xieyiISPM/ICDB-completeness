@@ -32,30 +32,34 @@ public class DBOperation {
         int columnNum = rsmd.getColumnCount();
         String preEmp_no = "";
         String preFrom_date ="";
-
+        String succEmp_no="";
+        String succFrom_date="";
+        int tupleListIndex = 0;
         while(resultSet.next()) {
             ArrayList fieldList = new ArrayList<String>();
-            /*for (int i = 1; i <= columnNum; i++) {
-                if(resultSet.getString(i) !=null) {
-                    fieldList.add(resultSet.getString(i).trim());
-                }
-            }*/
 
             String currentEmp_no = resultSet.getString(1).trim();
             String currentFrom_date = resultSet.getString(3).trim();
-
 
             fieldList.add(currentEmp_no); //"emp_no" column
             fieldList.add(resultSet.getString(2).trim());//"salary" column
             fieldList.add(currentFrom_date);//"from_date" column
             fieldList.add(resultSet.getString(4).trim()); //"to_date" column
             fieldList.add(resultSet.getString(6).trim()); //"serial" column
-            fieldList.add(preEmp_no);
-            fieldList.add(preFrom_date);
-            orderedTupleList.add(fieldList);
+            fieldList.add(preEmp_no);  //"preEmp_no" column
+            fieldList.add(preFrom_date); //"preFrom_date" column
             preEmp_no = currentEmp_no;
             preFrom_date = currentFrom_date;
+            if(tupleListIndex !=0) {
+                orderedTupleList.get(tupleListIndex -1 ).add(currentEmp_no); //"succEmp_no" column
+                orderedTupleList.get(tupleListIndex -1).add(currentFrom_date); //"succFrom_date" column
+            }
+            orderedTupleList.add(fieldList);
+            tupleListIndex++;
         }
+        orderedTupleList.get(tupleListIndex - 1).add(succEmp_no);
+        orderedTupleList.get(tupleListIndex - 1).add(succFrom_date);
+
         return orderedTupleList;
     }
 
@@ -101,6 +105,12 @@ public class DBOperation {
         }
         return tupleList;
     }
+
+    public void updateDB(String sql) throws SQLException{
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.executeUpdate();
+    }
+
 
     public ArrayList<ArrayList<String>> sortTable(String sql) throws SQLException{
         ArrayList<ArrayList<String>> tupleList = new ArrayList<>();

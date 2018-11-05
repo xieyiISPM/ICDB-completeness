@@ -17,6 +17,18 @@ Generate ICDB-completeness csv file time: 21.298s
 
 Load table time: 558.904s
 
+## test time with pre and succ primary keys 
+Create ordered tuple list done in: 49364ms
+
+Generating signature...
+Generate all signatures time: 1809610ms
+
+Creating csv file...
+Generate ICDB-completeness csv file time: 26218ms
+
+Using database employees_icdb_completeness...
+Load table time: 563274ms
+
 ## SELECTION test
 ### Test number of tuples: 20
 Collecting Ts (Query return set) list... done
