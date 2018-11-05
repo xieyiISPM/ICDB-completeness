@@ -30,14 +30,20 @@ public class DeleteICDBManager {
         Connection conn= connection.getConn();
         DBOperation dbOperation = new DBOperation(conn, schemaName);
 
-        String selectSql = "SELECT *  FROM " + tableName + " WHERE salary = 38850 LIMIT 1;";
+        //String selectSql = "SELECT *  FROM " + tableName + " WHERE salary = 38850 LIMIT 1;";
+        String selectSql = "SELECT *  FROM " + tableName + " WHERE salary = 38850 AND emp_no = 50419 AND from_date='1996-09-22' ;";
         deleteTuples(selectSql, dbOperation, schemaName, tableName, origTableName, ocaAttr, keyFile, primaryAttr, deletedTupleFile);
     }
 
     private static void deleteTuples(String selectSql, DBOperation dbOperation, String schemaName,
                                      String tableName, String origTableName, String attrName,
                                      String keyFile, String[] primmaryAttr, String deletedTupleFile ) throws SQLException, NoSuchAlgorithmException {
+
         ArrayList<ArrayList<String>> tupleList = dbOperation.queryDB(selectSql);
+        if(tupleList.size() == 0){
+            System.out.println("No records found!");
+            return;
+        }
         DBPrepare dbPrepare = new DBPrepare();
         dbPrepare.writeCSVFile(tupleList, deletedTupleFile);
 

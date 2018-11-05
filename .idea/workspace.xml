@@ -2,24 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="610f96b0-6bdc-4203-8a19-8b32c4e48414" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ica/DeleteAICG.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ica/DeleteICDBManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.metadata/.log" beforeDir="false" afterPath="$PROJECT_DIR$/.metadata/.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.metadata/.mylyn/.tasks.xml.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.metadata/.mylyn/.tasks.xml.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.metadata/.mylyn/tasks.xml.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.metadata/.mylyn/tasks.xml.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.metadata/.plugins/org.eclipse.core.resources/.safetable/org.eclipse.core.resources" beforeDir="false" afterPath="$PROJECT_DIR$/.metadata/.plugins/org.eclipse.core.resources/.safetable/org.eclipse.core.resources" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi" beforeDir="false" afterPath="$PROJECT_DIR$/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.metadata/.plugins/org.eclipse.epp.logging.aeri.ide/org.eclipse.epp.logging.aeri.ide.server/server-config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.metadata/.plugins/org.eclipse.epp.logging.aeri.ide/org.eclipse.epp.logging.aeri.ide.server/server-config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.metadata/.plugins/org.eclipse.m2e.logback.configuration/0.log" beforeDir="false" afterPath="$PROJECT_DIR$/.metadata/.plugins/org.eclipse.m2e.logback.configuration/0.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.metadata/version.ini" beforeDir="false" afterPath="$PROJECT_DIR$/.metadata/version.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cryto/GenSig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cryto/GenSig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dbOp/DBOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dbOp/DBOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ica/AICG.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ica/AICG.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ica/ICDBManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ica/ICDBManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/ConvertTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/ConvertTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/TestICA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TestICA.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.metadata/.plugins/org.eclipse.jdt.core/externalLibsTimeStamps" beforeDir="false" afterPath="$PROJECT_DIR$/.metadata/.plugins/org.eclipse.jdt.core/externalLibsTimeStamps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ica/DeleteICDBManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ica/DeleteICDBManager.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -46,23 +33,23 @@
         <counts>
           <entry key="dummy" value="14" />
           <entry key="gitignore" value="22" />
-          <entry key="java" value="26745" />
+          <entry key="java" value="26893" />
           <entry key="md" value="225" />
-          <entry key="txt" value="454" />
+          <entry key="txt" value="474" />
           <entry key="xml" value="101" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="26745" />
+          <entry key="JAVA" value="26893" />
           <entry key="Markdown" value="225" />
-          <entry key="PLAIN_TEXT" value="490" />
+          <entry key="PLAIN_TEXT" value="510" />
           <entry key="XML" value="101" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="csv" value="2" />
+          <entry key="csv" value="3" />
           <entry key="gitignore" value="1" />
           <entry key="java" value="54" />
           <entry key="md" value="3" />
@@ -75,7 +62,7 @@
         <counts>
           <entry key="JAVA" value="54" />
           <entry key="Markdown" value="3" />
-          <entry key="PLAIN_TEXT" value="6" />
+          <entry key="PLAIN_TEXT" value="7" />
           <entry key="XML" value="1" />
         </counts>
       </usages-collector>
@@ -104,11 +91,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ica/ICDBManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
+            <state relative-caret-position="391">
+              <caret line="47" column="41" lean-forward="true" selection-start-line="47" selection-start-column="41" selection-end-line="47" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -128,11 +115,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ica/DeleteICDBManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="64" column="9" lean-forward="true" selection-start-line="64" selection-start-column="9" selection-end-line="64" selection-end-column="9" />
+            <state relative-caret-position="272">
+              <caret line="45" column="9" lean-forward="true" selection-start-line="45" selection-start-column="9" selection-end-line="45" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -232,9 +219,9 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/main/java/dbOp/DBOperation.java" />
         <option value="$PROJECT_DIR$/src/main/java/cryto/GenSig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ica/DeleteICDBManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/ica/DeleteAICG.java" />
         <option value="$PROJECT_DIR$/src/main/java/ica/ICDBManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ica/DeleteICDBManager.java" />
       </list>
     </option>
   </component>
@@ -413,6 +400,11 @@
             <path>
               <item name="ICDBCompleteness" type="b2602c69:ProjectViewProjectNode" />
               <item name="ICDB-workspace" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ICDBCompleteness" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ICDB-workspace" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -471,7 +463,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541391586932" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541392383332" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="Errors" />
@@ -488,7 +480,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.ICDBManager">
+  <component name="RunManager" selected="Application.DeleteICDBManager">
     <configuration name="ConvertTable" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="io.ConvertTable" />
       <module name="ICDB-workspace" />
@@ -555,8 +547,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ICDBManager" />
         <item itemvalue="Application.DeleteICDBManager" />
+        <item itemvalue="Application.ICDBManager" />
         <item itemvalue="Application.ConvertTable" />
         <item itemvalue="Application.TestICA" />
         <item itemvalue="Application.TestMyQL" />
@@ -590,7 +582,7 @@
       <workItem from="1540520482615" duration="8538000" />
       <workItem from="1541175534760" duration="16725000" />
       <workItem from="1541275631590" duration="11676000" />
-      <workItem from="1541381215618" duration="9884000" />
+      <workItem from="1541381215618" duration="10685000" />
     </task>
     <task id="LOCAL-00001" summary="export table and import table implemented">
       <created>1539376449703</created>
@@ -676,17 +668,24 @@
       <option name="project" value="LOCAL" />
       <updated>1541192826286</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="delete implemented">
+      <created>1541391816315</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1541391816315</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="131850000" />
+    <option name="totallyTimeSpent" value="132651000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="19" y="27" width="1901" height="1012" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17805272" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17805272" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -696,7 +695,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32976446" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.18314607" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.25842696" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.25842696" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -735,7 +734,8 @@
     <MESSAGE value="range query verification passed" />
     <MESSAGE value="Modified to table with pre_PrimaryKey" />
     <MESSAGE value="add testResult.ods" />
-    <option name="LAST_COMMIT_MESSAGE" value="add testResult.ods" />
+    <MESSAGE value="delete implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="delete implemented" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -751,6 +751,12 @@
           <line>27</line>
           <properties />
           <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ica/DeleteICDBManager.java</url>
+          <line>41</line>
+          <properties />
+          <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -908,9 +914,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/salariesDeletedTuples.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ica/DeleteAICG.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
@@ -921,20 +924,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ica/DeleteICDBManager.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ica/ICDBManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="64" column="9" lean-forward="true" selection-start-line="64" selection-start-column="9" selection-end-line="64" selection-end-column="9" />
+        <state relative-caret-position="391">
+          <caret line="47" column="41" lean-forward="true" selection-start-line="47" selection-start-column="41" selection-end-line="47" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ica/ICDBManager.java">
+    <entry file="file://$PROJECT_DIR$/data/salariesDeletedTuples.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ica/DeleteICDBManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
+        <state relative-caret-position="272">
+          <caret line="45" column="9" lean-forward="true" selection-start-line="45" selection-start-column="9" selection-end-line="45" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
