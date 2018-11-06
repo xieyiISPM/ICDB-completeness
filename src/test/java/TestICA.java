@@ -23,7 +23,7 @@ public class TestICA {
             Connection conn= connection.getConn();
 
             /* Test getOCAfield*/
-            AICG aicg = new AICG(conn, schemaName, tableName, primaryAttr, ocaAttr);
+            SelectAICG aicg = new SelectAICG(conn, schemaName, tableName, primaryAttr, ocaAttr);
             String sql="SELECT * FROM " +schemaName +"." +tableName  + " WHERE salary >= 38888 AND salary <=38928 ORDER BY salary, emp_no, from_date; ";
             //String sql="SELECT * FROM " +schemaName +"." +tableName  + " WHERE salary >= 38888 ORDER BY salary, emp_no, from_date LIMIT 200000; ";
 

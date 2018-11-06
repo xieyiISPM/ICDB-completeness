@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Base64;
 
-public class AICG {
+public class SelectAICG {
         private Connection conn;
         private String schema;
         private String tableName;
@@ -22,7 +22,7 @@ public class AICG {
         private ArrayList<String> tsTail = null;
         private DBOperation dbOperation;
 
-        public AICG(Connection conn, String schema, String tableName, String[] primaryAttr, String ocaAttr) throws SQLException {
+        public SelectAICG(Connection conn, String schema, String tableName, String[] primaryAttr, String ocaAttr) throws SQLException {
             this.conn = conn;
             this.schema = schema;
             this.tableName = tableName;

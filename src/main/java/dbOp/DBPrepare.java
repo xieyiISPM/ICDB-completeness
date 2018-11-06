@@ -1,8 +1,8 @@
 package dbOp;
 
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class DBPrepare {
     private String COMMA_DELIMITER =",";
@@ -40,6 +40,25 @@ public class DBPrepare {
             }
         }
 
+    }
+
+    public ArrayList<ArrayList<String>> readCSVFile(String fileName){
+        ArrayList<ArrayList<String>> tupleList = new ArrayList<>();
+        try{
+            File file = new File(fileName);
+            FileReader fileReader = new FileReader(file);
+            BufferedReader br = new BufferedReader(fileReader);
+            String line;
+            while((line= br.readLine()) != null){
+                ArrayList<String> tuple = new ArrayList<> (Arrays.asList(line.split(",")));
+                tupleList.add(tuple);
+            }
+
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        return tupleList;
     }
 
 

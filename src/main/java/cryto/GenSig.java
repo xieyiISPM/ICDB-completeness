@@ -66,6 +66,30 @@ public class GenSig {
        return Base64.getEncoder().encodeToString(signature);
     }
 
+    public String genSigInsertion(ArrayList<String> preTuple, ArrayList<String> nextTuple, String attrName, String tableName, String keyFile) throws NoSuchAlgorithmException {
+        String oca = "";
+        String attrValue = nextTuple.get(1);
+        String key1 = nextTuple.get(0);
+        String key2 = nextTuple.get(2);
+
+        String serialNum = nextTuple.get(4);
+
+        oca = oca + attrValue + "|" + key1 + key2 + attrName + tableName + serialNum ;
+
+        if(Integer.parseInt(preTuple.get(0)) != 0){
+            String preAttrValue = preTuple.get(1);
+            String preKey1 = preTuple.get(0);
+            String preKey2 = preTuple.get(2);
+            String preSerialNum = preTuple.get(4);
+
+            oca = oca + preAttrValue + "|" + preKey1 + preKey2 + preSerialNum;
+        }
+        RSA rsa = new RSA();
+
+        byte[] signature = rsa.signature(oca, rsa.getPrivateKey(keyFile),rsa.getModulus(keyFile));
+        return Base64.getEncoder().encodeToString(signature);
+    }
+
     public ArrayList genSignature(ArrayList<ArrayList<String>> ocaFieldList,
                                   ArrayList<ArrayList<String>> orderTupleList,
                                   String attrName, String tableName, String keyFile) throws NoSuchAlgorithmException {

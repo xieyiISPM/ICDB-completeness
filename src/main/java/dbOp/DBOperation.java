@@ -106,6 +106,24 @@ public class DBOperation {
         return tupleList;
     }
 
+    public ArrayList<ArrayList<String>> queryInsert(String sql) throws SQLException{
+        ArrayList<ArrayList<String>> tupleList = new ArrayList<>();
+
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        ResultSet resultSet = stmt.executeQuery(sql);
+        ResultSetMetaData rsmd = resultSet.getMetaData();
+        int columnNum = rsmd.getColumnCount();
+
+        while(resultSet.next()) {
+            ArrayList fieldList = new ArrayList<String>();
+            for (int i = 1; i <= 5; i++) {
+                fieldList.add(resultSet.getString(i).trim());
+            }
+            tupleList.add(fieldList);
+        }
+        return tupleList;
+    }
+
     public void updateDB(String sql) throws SQLException{
         PreparedStatement stmt = conn.prepareStatement(sql);
         stmt.executeUpdate();

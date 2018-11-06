@@ -3,14 +3,12 @@ package ica;
 import com.google.common.base.Stopwatch;
 import conn.MySQLConn;
 import cryto.RSA;
-import dbOp.DBQuery;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-public class ICDBManager {
+public class SelectICDBManager {
 
 
     public static void main(String[] args){
@@ -32,7 +30,7 @@ public class ICDBManager {
             Connection conn= connection.getConn();
 
             /* Test getOCAfield*/
-            AICG aicg = new AICG(conn, schemaName, tableName, primaryAttr, ocaAttr);
+            SelectAICG aicg = new SelectAICG(conn, schemaName, tableName, primaryAttr, ocaAttr);
             String sql="SELECT * FROM " +schemaName +"." +tableName  + " WHERE salary >= 38812 AND salary <=38888 ORDER BY salary, emp_no, from_date; ";
             //String sql="SELECT * FROM " +schemaName +"." +tableName  + " WHERE salary >= 38888 ORDER BY salary, emp_no, from_date LIMIT  " + testNum + ";";
             //String sql="SELECT * FROM " +schemaName +"." +tableName  + "  LIMIT  " + testNum + ";";
